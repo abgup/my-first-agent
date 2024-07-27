@@ -12,6 +12,7 @@ class BrowserTools():
   @tool("Scrape website content")
   def scrape_and_summarize_website(website):
     """Useful to scrape and summarize a website content"""
+    # check browserless api key
     url = f"https://chrome.browserless.io/content?token={os.environ['BROWSERLESS_API_KEY']}"
     payload = json.dumps({"url": website})
     headers = {'cache-control': 'no-cache', 'content-type': 'application/json'}

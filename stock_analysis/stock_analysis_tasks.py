@@ -23,7 +23,8 @@ class StockAnalysisTasks():
   
         Selected company by the customer: {company}
       """),
-      agent=agent
+      agent=agent,
+      expected_output="simple output"
     )
     
   def financial_analysis(self, agent): 
@@ -44,7 +45,8 @@ class StockAnalysisTasks():
 
         Make sure to use the most recent data possible.
       """),
-      agent=agent
+      agent=agent,
+      expected_output="concise output"
     )
 
   def filings_analysis(self, agent):
@@ -63,7 +65,8 @@ class StockAnalysisTasks():
         your customer.
         {self.__tip_section()}        
       """),
-      agent=agent
+      agent=agent,
+      expected_output="small text"
     )
 
   def recommend(self, agent):
@@ -86,7 +89,8 @@ class StockAnalysisTasks():
         Make it pretty and well formatted for your customer.
         {self.__tip_section()}
       """),
-      agent=agent
+      agent=agent,
+      expected_output="text"
     )
 
   def __tip_section(self):

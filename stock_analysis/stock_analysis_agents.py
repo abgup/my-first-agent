@@ -1,11 +1,22 @@
+import os
 from crewai import Agent
+from dotenv import load_dotenv
 
 from tools.browser_tools import BrowserTools
 from tools.calculator_tools import CalculatorTools
 from tools.search_tools import SearchTools
 from tools.sec_tools import SECTools
+from langchain_groq import ChatGroq
 
 from langchain.tools.yahoo_finance_news import YahooFinanceNewsTool
+
+load_dotenv()
+
+default_llm = ChatGroq(
+  temperature=0.5,
+  model="llama3-70b-8192",
+  api_key=os.getenv("GROQ_API_KEY")
+)
 
 class StockAnalysisAgents():
   def financial_analyst(self):
@@ -17,6 +28,7 @@ class StockAnalysisAgents():
       lots of expertise in stock market analysis and investment
       strategies that is working for a super important customer.""",
       verbose=True,
+      llm=default_llm,
       tools=[
         BrowserTools.scrape_and_summarize_website,
         SearchTools.search_internet,
@@ -36,6 +48,7 @@ class StockAnalysisAgents():
       and market sentiments. Now you're working on a super 
       important customer""",
       verbose=True,
+      llm=default_llm,
       tools=[
         BrowserTools.scrape_and_summarize_website,
         SearchTools.search_internet,
@@ -56,6 +69,7 @@ class StockAnalysisAgents():
       strategic investment advice. You are now working for
       a super important customer you need to impress.""",
       verbose=True,
+      llm=default_llm,
       tools=[
         BrowserTools.scrape_and_summarize_website,
         SearchTools.search_internet,
